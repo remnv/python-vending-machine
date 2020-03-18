@@ -2,7 +2,6 @@
 # from items import Items
 # from vendingmachine import VendingMachine
 from mdmachinestate.controller import MachineState
-from mdsystem.controller import System
 
 
 if __name__ == '__main__':
@@ -10,14 +9,14 @@ if __name__ == '__main__':
     # TODO, do data preparation here loading end
 
     close = False
-    cancel = False
+    reset = False
     # vm_machine = VendingMachine()
     selected_item = None
 
     ms_obj = MachineState()
     ms_obj.reset()
     while close is False:
-        if not cancel:
+        if not reset:
 
             # state now
             ms_obj._state()
@@ -51,13 +50,17 @@ if __name__ == '__main__':
             elif _cmd[0] == "5":
                 ms_obj.get_return_coin()
                 print("Get returned coins")
+
+                reset = True
                 pass
 
             else:
                 close = True
-        elif cancel:
+        elif reset:
             ms_obj.reset()
+            print("======================================")
             print("Ready again..")
+            reset = False
 
         else:
             pass

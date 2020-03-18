@@ -46,16 +46,16 @@ class Coin:
             count = int(coin_ammount / i)
             coin_ammount = coin_ammount-(i*count)
 
-            data = {i: count}
+            data = {str(i): count}
             change = {**change, **data}
 
         return change
 
-    # def is_change_possible(amount, all_coins_in_vending_machine):
-    #     if all_coins_in_vending_machine["10"] < 9:
+    # def is_change_possible(coin, changeable_list):
+    #     if changeable_list["10"] < 9:
     #         return False
-    #     if amount == 500 and all_coins_in_vending_machine["100"] < 4:
+    #     if coin == 500 and changeable_list["100"] < 4:
     #         return False
-    #     if amount % 10 != 0:
+    #     if coin % 10 != 0:
     #         return False
     #     return True
