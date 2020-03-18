@@ -25,7 +25,7 @@ $ python main.py
 
 
 ## Standard input method
-
+```
 Input method
 	Input [command number + space + arguments] into prompt
 
@@ -61,3 +61,4 @@ Command (5)
 	Command number   : 5
 	Argument         : None
 For example: “5” (Get returned coins)
+```
