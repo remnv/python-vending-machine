@@ -29,16 +29,20 @@ class MachineState:
         }
 
         self.input_amount = 0
-        self.return_gate = []
+        self.return_gate = {}
         self.outlet = []
 
         self.provisional_coin = {str(i): 0 for i in coin_obj.VALID_COIN_LIST}
 
     def insert_coin(self, coin):
         coin_obj = Coin()
-        if coin_obj.is_coin_usable(coin, self.vending_coin):
+
+        if coin_obj.is_coin_check(coin, self.vending_coin):
             self.provisional_coin[str(coin)] += 1
             self.input_amount += int(coin)
+        else:
+            self.return_gate = coin_obj.return_gate(coin, self.return_gate)
+            print("Change not possible")
 
     def choose_item(self, index):
         item_obj = Item()
@@ -59,7 +63,7 @@ class MachineState:
     def pull_lever(self):
         coin_obj = Coin()
         self.return_gate = coin_obj.change_coin(
-            self.input_amount, self.vending_coin)
+            self.input_amount, self.vending_coin, self.return_gate)
         self.input_amount = 0
 
     def get_return_coin(self):
@@ -90,7 +94,7 @@ class MachineState:
             for i in rg:
                 text = "%s%s\n" % (" "*tbs, "%s JPY" % i)
                 text = text*rg[i]
-                print(text[:-2])
+                print(text[:-1])
         else:
             print(" "*tbs, "Empty")
 
