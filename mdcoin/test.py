@@ -37,6 +37,62 @@ class UnitTestCoin(unittest.TestCase):
         self.assertEqual(expected, coin_obj.is_coin_usable(
             inserted_coin, coin_list))
 
+    def test_is_change_possible_true(self):
+        coin_obj = Coin()
+        coin_list = {
+            "10": 21,
+            "50": 5,
+            "100": 16,
+            "500": 10,
+        }
+        inserted_coin = 500
+
+        expected = True
+        self.assertEqual(expected, coin_obj.is_change_possible(
+            inserted_coin, coin_list))
+
+    def test_is_change_possible_true(self):
+        coin_obj = Coin()
+        coin_list = {
+            "10": 21,
+            "50": 5,
+            "100": 3,
+            "500": 10,
+        }
+        inserted_coin = 500
+
+        expected = False
+        self.assertEqual(expected, coin_obj.is_change_possible(
+            inserted_coin, coin_list))
+
+    def test_is_coin_check_true(self):
+        coin_obj = Coin()
+        coin_list = {
+            "10": 21,
+            "50": 5,
+            "100": 16,
+            "500": 10,
+        }
+        inserted_coin = 500
+
+        expected = True
+        self.assertEqual(expected, coin_obj.is_coin_check(
+            inserted_coin, coin_list))
+
+    def test_is_coin_check_false(self):
+        coin_obj = Coin()
+        coin_list = {
+            "10": 21,
+            "50": 5,
+            "100": 3,
+            "500": 10,
+        }
+        inserted_coin = 500
+
+        expected = False
+        self.assertEqual(expected, coin_obj.is_coin_check(
+            inserted_coin, coin_list))
+
     def test_change_coin_is_check_true(self):
         coin_obj = Coin()
         last_gate = {}
